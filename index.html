@@ -1,0 +1,31 @@
+<!doctype html><html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no"><title>尊界 V800 · 悬崖刹车挑战</title>
+<style>body{margin:0;overflow:hidden;background:#000;font-family:"PingFang SC","Microsoft YaHei",sans-serif;touch-action:none;user-select:none;color:#fff}
+#hud{position:fixed;left:12px;top:12px;background:#000a;padding:10px 14px;border-radius:8px;font-size:14px;line-height:1.7;pointer-events:none;min-width:200px}
+.bar{width:200px;height:10px;background:#333;border-radius:5px;position:relative;overflow:hidden}.bar i{display:block;height:100%;background:#3f8}
+.bar b{position:absolute;top:0;bottom:0;width:2px;background:#f33}
+#pedal{position:fixed;right:20px;top:20px;width:120px;height:170px;background:#000a;border-radius:10px;pointer-events:none}
+#pedal svg{width:100%;height:100%}
+#msg{position:fixed;left:50%;top:22%;transform:translateX(-50%);font-size:42px;font-weight:900;text-shadow:0 0 12px #000;text-align:center;pointer-events:none;white-space:nowrap}
+#warn{position:fixed;inset:0;border:0 solid #f00;pointer-events:none;box-sizing:border-box;transition:border .2s}
+.overlay{position:fixed;inset:0;background:#000c;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;z-index:5}
+.overlay h1{font-size:44px;margin:0 0 6px;letter-spacing:4px}.overlay p{color:#ccc;max-width:560px;line-height:1.8;margin:4px}
+.overlay button{margin-top:18px;font-size:22px;padding:12px 40px;border-radius:30px;border:0;background:linear-gradient(#e8c98a,#b28a4a);color:#222;font-weight:bold;cursor:pointer}
+.hidden{display:none!important}
+#btns{position:fixed;right:20px;bottom:24px;display:flex;gap:12px}#lbtns{position:fixed;left:20px;bottom:24px;display:flex;gap:12px}
+#btns button,#lbtns button{width:84px;height:70px;border-radius:14px;border:2px solid #fff6;background:#0008;color:#fff;font-size:16px}
+#help{position:fixed;left:50%;bottom:8px;transform:translateX(-50%);font-size:12px;color:#ccc;background:#0007;padding:4px 10px;border-radius:6px;pointer-events:none}
+</style><script type="importmap">{"imports":{"three":"./three.module.js","three/addons/":"./jsm/"}}</script></head><body>
+<div id="hud"></div><div id="warn"></div><div id="msg"></div>
+<div id="pedal"><svg viewBox="0 0 120 170"><text x="60" y="18" fill="#ccc" font-size="12" text-anchor="middle">刹车踏板</text>
+<g id="pedArm"><rect x="56" y="30" width="8" height="70" fill="#888"/></g><g id="pedPad"><rect x="35" y="100" width="50" height="40" rx="6" fill="#bbb"/><rect x="40" y="106" width="40" height="4" fill="#777"/><rect x="40" y="116" width="40" height="4" fill="#777"/><rect x="40" y="126" width="40" height="4" fill="#777"/></g>
+<rect x="45" y="22" width="30" height="10" fill="#555"/><text id="pedTxt" x="60" y="160" fill="#fff" font-size="12" text-anchor="middle">0 N</text></svg></div>
+<div id="lbtns"><button data-k="KeyA">◀ 左</button><button data-k="KeyD">右 ▶</button></div>
+<div id="btns"><button data-k="KeyW">油门</button><button data-k="KeyS">刹车</button><button data-k="KeyE">蒸汽</button></div>
+<div id="help">W 油门 · Space/S 刹车 · A/D 转向 · 坠崖后按住 E/Space 喷蒸汽，W/S 前后 · R 重来</div>
+<div id="start" class="overlay"><h1>尊界 V800 · 悬崖刹车挑战</h1>
+<p>致敬“踩断刹车”梗：前方 600 米是悬崖。车辆自动加速，车速过 100 km/h 后才能刹车。</p>
+<p>按住刹车，踏板力越来越大；超过 <b style="color:#f66">1612 N</b> 踏板支架就会断……而且就算你很温柔，它也<b>可能随机断</b>。</p>
+<p>停得越靠近崖边，分越高。冲下悬崖？按住 <b>E / 空格</b> 启动蒸汽推进器，飞回崖顶道路安全降落拿奖励！</p>
+<button id="go">开始挑战</button></div>
+<div id="end" class="overlay hidden"><h1 id="endT"></h1><p id="endP"></p><button id="again">再来一次 (R)</button></div>
+<script type="module" src="game.js"></script></body></html>
